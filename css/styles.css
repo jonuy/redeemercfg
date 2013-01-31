@@ -34,7 +34,7 @@ abbr,acronym { border:0;
 body {
   background-color: #eee;
   font-family: 'Donegal One';
-  padding: 6px;
+  padding: 10px;
 }
 
 h1 {
@@ -57,16 +57,29 @@ h3 {
 
 h4 {
   font-weight: bold;
+  margin: 10px 0;
 }
 
 p {
   margin: 6px 0;
 }
 
+.indented-passage {
+  padding-left: 1em;
+}
+
+.question {
+  margin: 20px 0;
+}
+
+.section-body {
+  margin: 10px 0;
+}
+
 .section-title {
   font-size: 1.2em;
   font-weight: bold;
-  margin: 6px 0;
+  margin: 10px 0;
 }
 
 .super {
