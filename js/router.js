@@ -4,7 +4,8 @@ define(
     'underscore',
     'backbone',
     'models/GuideModel',
-    'views/GuideView'
+    'views/GuideView',
+    'libs/swipejs/swipe-1.0.min',
   ],
 
   function($, _, Backbone, GuideModel, GuideView) {
@@ -25,6 +26,8 @@ define(
         var onModelFetched = function(data) {
           view.dataModel = guideModel;
           view.render();
+
+          window.mySwipe = new Swipe(document.getElementById('slider'), {startSlide:1});
         };
 
         guideModel.fetch({success:onModelFetched});

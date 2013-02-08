@@ -1,5 +1,5 @@
 require.config({
-  enforceDefine: true,
+  enforceDefine: false,
   paths: {
     backbone: 'libs/backbone/backbone-0.9.9.min',
     jquery: 'libs/jquery/jquery-1.8.3.min',
