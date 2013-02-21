@@ -7,7 +7,7 @@ define(
 
   function($, _, Backbone) {
     var GuideModel = Backbone.Model.extend({
-      url: 'data/02_03_2013.json',
+      url: 'data/02_22_2013.json',
       
       initialize: function() {
       },
