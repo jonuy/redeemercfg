@@ -3,6 +3,7 @@
   <li style="display:none">
     <h2>WORSHIP</h2>
     <hr>
+    <% if (typeof(worship) !== 'undefined') { %>
     <% worship.forEach(function(section) { %>
       
       <h3><%= section.header %></h3>
@@ -12,6 +13,7 @@
       <hr>
 
     <% }); %>
+    <% } %>
   </li>
 
   <!-- Study Page -->
@@ -21,7 +23,7 @@
     <h2><%= title_2 %></h2>
     <hr>
 
-    <% if (series_intro) { %>
+    <% if (typeof(series_intro) !== 'undefined') { %>
       <h3>SERIES INTRODUCTION</h3>
       <div class="section-body">
         <%= series_intro %>
@@ -61,10 +63,12 @@
       <%= question3 %>
     </div>
 
+    <% if (typeof(question4) !== 'undefined') { %>
     <div class="question">
       <%= question4 %>
     </div>
     <hr>
+    <% } %>
 
     <h3>PRAYER</h3>
     <ul>
@@ -72,9 +76,6 @@
         <li class="question"> - <%= section %></li>
       <% }); %>
     </ul>
-
-    <div class="question">
-    </div>
 
   </li>
 </ul></div>
