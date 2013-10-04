@@ -82,6 +82,18 @@ p {
   margin: 10px 0;
 }
 
+.swipe-control {
+  background-color: #01669B;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.swipe-control:active {
+  background-color: #A0C8EA;
+}
+
 .super {
   vertical-align: super;
   font-size: .75em;

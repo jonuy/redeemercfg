@@ -42,7 +42,7 @@
     </div>
     <hr>
 
-    <h3>DISCUSSION</h3>
+    <h3>INTRODUCTION</h3>
     <h4>GOAL OF THIS STUDY</h4>
     <div class="section-body">
       <%= goal %>
@@ -54,6 +54,7 @@
     </div>
     <hr>
 
+    <h3>STUDY</h3>
     <div class="question">
       <%= question1 %>
     </div>
@@ -62,15 +63,26 @@
       <%= question2 %>
     </div>
 
+    <% if (typeof(question3) !== 'undefined') { %>    
     <div class="question">
       <%= question3 %>
     </div>
+    <% } %>
 
     <% if (typeof(question4) !== 'undefined') { %>
     <div class="question">
       <%= question4 %>
     </div>
     <hr>
+    <% } %>
+
+    <% if (typeof(addlSections) !== 'undefined') { %>
+    <% addlSections.forEach(function(section) { %>
+    <h3><%= section.header %></h3>
+    <div class="section-body">
+      <%= section.body %>
+    </div>
+    <% }); %>
     <% } %>
 
     <% if (typeof(prayer) !== 'undefined') { %>
