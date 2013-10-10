@@ -84,6 +84,8 @@ p {
 
 .swipe-control {
   background-color: #01669B;
+  border: black 1px solid;
+  border-radius: 10px;
   color: #fff;
   font-weight: bold;
   padding: 10px;
