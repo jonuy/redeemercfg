@@ -33,7 +33,7 @@ abbr,acronym { border:0;
 
 body {
   background-color: #eee;
-  font-family: 'Donegal One';
+  font-family: 'Montserrat';
   padding: 10px;
 }
 
@@ -60,8 +60,28 @@ h4 {
   margin: 10px 0;
 }
 
+li {
+  list-style: circle inside;
+  margin-left: 10px;
+  padding-bottom: 10px;
+}
+
 p {
   margin: 1em 0;
+}
+
+.arrow-left {
+  display: inline;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.arrow-right {
+  display: inline;
+  height: 24px;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 .indented-passage {
@@ -94,6 +114,11 @@ p {
 
 .swipe-control:active {
   background-color: #A0C8EA;
+}
+
+.swipe-control-text {
+  position: relative;
+  top: 2px;
 }
 
 .super {

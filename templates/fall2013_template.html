@@ -1,7 +1,10 @@
 <div id="slider"><ul>
   <!-- Worship Page -->
   <li style="display:none">
-    <div id="goStudy" class="swipe-control">STUDY >></div>
+    <div id="goStudy" class="swipe-control">
+      <span class="swipe-control-text">STUDY swipe right</span>
+      <img src="css/right_arrow.png" class="arrow-right"/>
+    </div>
     <h2>WORSHIP</h2>
     <hr>
     <% if (typeof(worship) !== 'undefined') { %>
@@ -15,12 +18,18 @@
 
     <% }); %>
     <% } %>
-    <div id="goStudy" class="swipe-control">STUDY >></div>
+    <div id="goStudy" class="swipe-control">
+      <span class="swipe-control-text">STUDY swipe right</span>
+      <img src="css/right_arrow.png" class="arrow-right"/>
+    </div>
   </li>
 
   <!-- Study Page -->
   <li style="display:block">
-    <div id="goWorship" class="swipe-control"><< WORSHIP</div>
+    <div id="goWorship" class="swipe-control">
+      <img src="css/left_arrow.png" class="arrow-left"/>
+      <span class="swipe-control-text">WORSHIP swipe left</span>
+    </div>
 
     <h1><%= title_1 %></h1>
     <h2><%= title_2 %></h2>
