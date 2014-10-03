@@ -60,8 +60,15 @@ h4 {
   margin: 10px 0;
 }
 
-li {
+div.section-body ol li {
+  list-style: decimal;
+}
+
+div.section-body ul li {
   list-style: circle inside;
+}
+
+li {
   margin-left: 10px;
   padding-bottom: 10px;
 }
