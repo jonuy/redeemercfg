@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
   findCurrState.then(
     function(doc) {
       if (doc) {
-        return modelStudy.findOne({_id: doc.study});
+        return modelStudy.findOne({_id: doc.study}).exec();
       }
       else {
         return null;
