@@ -1,3 +1,14 @@
 extend layout
+block scripts
+  script(src="/scripts/lib/jquery/jquery-1.8.3.min.js")
+  script(src="/scripts/lib/swipejs/swipe-1.0.min.js")
+  script(src="/scripts/client.js")
+
 block page-content
-  p TODO: page content goes here
+  #slider
+    ul
+      li(style="display:none")
+        include ./includes/worship.jade
+
+      li(style="display:block")
+        include ./includes/study.jade

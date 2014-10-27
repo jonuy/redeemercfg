@@ -1,0 +1,21 @@
+#goWorship.swipe-control
+  img.arrow-left(src="css/left_arrow.png")
+  span.swipe-control-text WORSHIP
+
+h1 #{title}
+h2 #{subtitle}
+
+if scripture_verse && scripture_body
+  h3 SCRIPTURE
+  div.section-title
+    | #{scripture_verse}
+  div
+    | #{scripture_body}
+
+if sections
+  - for (var i = 0; i < sections.length; i++) {
+    h3.section-header
+      | #{sections[i].section_title}
+    div.section-body
+      | #{sections[i].section_body}
+  - }
