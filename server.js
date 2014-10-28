@@ -1,4 +1,5 @@
 var express = require('express')
+  , bodyParser = require('body-parser')
   , path = require('path')
   , mongoose = require('mongoose')
   ;
@@ -9,6 +10,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/app/views');
 app.set('view engine', 'jade');
+app.use(bodyParser.json());
 
 // 'public' specified as the public directory
 app.use(express.static(path.join(__dirname, 'app/public')));
@@ -19,8 +21,10 @@ mongoose.connect(process.env.DB_URI || 'mongodb://localhost/redeemercfg');
 // Setting up controllers
 var admin = require('./app/controllers/admin');
 var client = require('./app/controllers/client');
+var study = require('./app/controllers/study');
 app.use('/', admin);
 app.use('/', client);
+app.use('/', study);
 
 
 // TEMP DATA //
