@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
   ;
 
 var schema = new mongoose.Schema({
+  is_current_study: {type: Boolean, default: false},
   name: String,
   title: String,
   subtitle: String,

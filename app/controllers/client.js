@@ -7,25 +7,14 @@ var router = express.Router();
 router.get('/', function(req, res) {
   console.log('Rendering main client view');
 
-  var modelCurrentState = require('../models/current_state');
   var modelStudy = require('../models/study');
 
-  var findCurrState = modelCurrentState.findOne({}).exec();
-  findCurrState.then(
-    function(doc) {
-      if (doc) {
-        return modelStudy.findOne({_id: doc.study}).exec();
-      }
-      else {
-        return null;
-      }
-    },
-    function(err) {
+  modelStudy.findOne({is_current_study: true}, function(err, doc) {
+    if (err) {
       console.log(err);
       res.send(500);
     }
-  ).then(
-    function(doc) {
+    else {
       var data = {};
 
       if (doc) {
@@ -37,12 +26,8 @@ router.get('/', function(req, res) {
       }
 
       res.render('client', data);
-    },
-    function(err) {
-      console.log(err);
-      res.send(500);
     }
-  );
+  });
 
 });
 

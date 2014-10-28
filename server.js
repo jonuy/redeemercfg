@@ -32,6 +32,7 @@ modelStudy.findOne({}, function(err, doc) {
   }
   else if (!doc) {
     modelStudy.create({
+      is_current_study: true,
       name: 'DEFAULT_NAME',
       title: 'The Prayer of Prayers',
       subtitle: 'Struggle: Thy Will Be Done',
@@ -54,23 +55,6 @@ modelStudy.findOne({}, function(err, doc) {
     }, function(err, createdDoc) {
       if (err) {
         console.log(err);
-      }
-      else {
-        console.log('Created doc:', createdDoc);
-        var modelState = require('./app/models/current_state');
-        modelState.findOneAndUpdate(
-          {},
-          {study: createdDoc._id},
-          {upsert: true},
-          function(err, updated) {
-            if (err) {
-              console.log(err);
-            }
-            else {
-              console.log('UPDATED:', updated);
-            }
-          }
-        );
       }
     });
   }
