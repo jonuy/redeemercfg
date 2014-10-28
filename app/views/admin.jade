@@ -17,9 +17,15 @@ block page-content
   else
     p No study selected
 
-  h4 Other Studies:
-  - for(var i = 0; studies && i < studies.length; i++) {
+  h4 All Studies:
+  - for (var i = 0; studies && i < studies.length; i++) {
     // list the study names
+    p
+      | #{studies[i].name}
+      - if (studies[i].is_current_study) {
+        span
+          |  - This is the current one.
+      - }
   - }
 
   button#create-new Create New

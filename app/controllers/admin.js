@@ -21,9 +21,8 @@ router.get('/admin', function(req, res) {
       if (docs[i].is_current_study) {
         currentStudy = docs[i];
       }
-      else {
-        studies[studies.length] = docs[i];
-      }
+      
+      studies[studies.length] = docs[i];
     }
 
     var data = {
