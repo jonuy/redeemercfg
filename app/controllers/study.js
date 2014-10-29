@@ -22,6 +22,16 @@ router.post('/study', function(req, res) {
     scripture_body: req.body.scripture_body
   };
 
+  if (req.body.sections && req.body.sections.length > 0) {
+    data.sections = [];
+
+    for (var i = 0; i < req.body.sections.length; i++) {
+      data.sections[i] = {};
+      data.sections[i].section_title = req.body.sections[i].section_title;
+      data.sections[i].section_body = req.body.sections[i].section_body;
+    }
+  }
+
   modelStudy.create(data, function(err, doc) {
     if (err) {
       console.log(err);

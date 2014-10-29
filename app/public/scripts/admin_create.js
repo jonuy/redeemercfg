@@ -6,9 +6,9 @@ $('#add-section').click(function() {
   var section = $(sectionTemplate);
 
   var header = section.find('.section-header');
-  header.addClass('.addl-section-header-' + numAddlSections);
+  header.attr('id', 'addl-section-header-' + numAddlSections);
   var body = section.find('.section-body');
-  body.addClass('.addl-section-body-' + numAddlSections);
+  body.attr('id', 'addl-section-body-' + numAddlSections);
 
   numAddlSections++;
 
@@ -18,11 +18,26 @@ $('#add-section').click(function() {
 // Save to the database
 $('#save').click(function() {
   var data = {};
+
+  // Get the required fields
   data.name = $('#study-name').val();
   data.title = $('#study-title').val();
   data.subtitle = $('#study-subtitle').val();
   data.scripture_verse = $('#scripture-verse').val();
   data.scripture_body = $('#scripture-body').val();
+
+  // Get the additional sections
+  if (numAddlSections > 0) {
+    data.sections = [];
+
+    for (var i = 0; i < numAddlSections; i++) {
+      data.sections[i] = {};
+      data.sections[i].section_title = $('#addl-section-header-' + i).val();
+      data.sections[i].section_body = $('#addl-section-body-' + i).val();
+    }
+  }
+
+
   var jsonData = JSON.stringify(data);
   console.log('Creating study with data: ' + jsonData);
 
