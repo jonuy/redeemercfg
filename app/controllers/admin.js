@@ -26,6 +26,7 @@ router.get('/admin', function(req, res) {
     }
 
     var data = {
+      title: 'redeemercfg - admin',
       currentStudy: currentStudy,
       studies: studies
     };
@@ -37,7 +38,7 @@ router.get('/admin', function(req, res) {
 // Show admin create screen
 router.get('/admin/create', function(req, res) {
   console.log('Rendering admin/create view');
-  res.render('admin_create', {});
+  res.render('admin_create', {title: 'redeemercfg - admin/create'});
 });
 
 // Create new study document
