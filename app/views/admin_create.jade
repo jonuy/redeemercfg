@@ -5,6 +5,7 @@ block styles
 block scripts
   script(src="//code.jquery.com/jquery-1.11.0.min.js")
   script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+  script(src="../scripts/lib/stmd/commonmark.js")
   script(src="../scripts/admin_create.js")
 
 block page-header
@@ -12,33 +13,35 @@ block page-header
     h2 Admin - Create a Study
 
 block page-content
-  form.form
-    .form-group
-      label Name:
-      input#study-name.form-control
-    .form-group
-      label Title: 
-      input#study-title.form-control
-    .form-group
-      label Subtitle: 
-      input#study-subtitle.form-control
-    .form-group
-      label Scripture Verse:
-      input#scripture-verse.form-control
-    .form-group
-      label Scripture:
-      textarea#scripture-body.form-control
+  div.col-md-6
+    form.form
+      .form-group
+        label Name (for internal use only):
+        input#study-name.form-control
+      .form-group
+        label Title (required):
+        input#study-title.form-control
+      .form-group
+        label Subtitle (required):
+        input#study-subtitle.form-control
+      .form-group
+        label Scripture Verse (required):
+        input#scripture-verse.form-control
+      .form-group
+        label Scripture (required):
+        textarea#scripture-body.form-control
 
-    #section-container
-  
-  p
-    button#add-section.btn.btn-default Add Section
+      #section-container
 
-  h3 Preview
-  #preview
+    p
+      button#add-section.btn.btn-default Add Section
 
-  p
-    button#save.btn.btn-primary SAVE
+  div.col-md-6
+    h3 Preview
+    #preview
+
+    p
+      button#save.btn.btn-primary SAVE
 
   #section-template(style="display:none")
     .form-group
