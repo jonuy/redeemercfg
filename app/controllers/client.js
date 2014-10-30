@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
         data.scripture_verse = doc.scripture_verse;
         data.scripture_body = doc.scripture_body;
         data.sections = doc.sections;
+        data.worship = doc.worship;
       }
 
       res.render('client', data);

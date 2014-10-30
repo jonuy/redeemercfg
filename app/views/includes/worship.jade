@@ -3,3 +3,11 @@
   img(src="/css/right_arrow.png", class="arrow-right")
 
 h2 WORSHIP
+
+if worship
+  - for (var i = 0; i < worship.length; i++) {
+    h3.section-header
+      != worship[i].worship_title
+    div.section-body
+      != worship[i].worship_body
+  - }
