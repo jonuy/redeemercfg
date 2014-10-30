@@ -1,4 +1,5 @@
 var numAddlSections = 0;
+var numWorshipSections = 0;
 
 // Setup commonmark parsing
 $(document).ready(function() {
@@ -72,6 +73,23 @@ $(document).ready(function() {
       }
     }
 
+    // Get the worship sections
+    if (numWorshipSections > 0) {
+      text += "---\n\n## Worship\n\n";
+
+      for (var i = 0; i < numWorshipSections; i++) {
+        var section_title = $('#worship-section-header-' + i).val();
+        if (section_title.length > 0) {
+          text += '### ' + section_title + '\n\n';
+        }
+
+        var section_body = $('#worship-section-body-' + i).val();
+        if (section_body.length > 0) {
+          text += section_body + '\n\n';
+        }
+      }
+    }
+
     return text;
   };
 
@@ -93,6 +111,23 @@ $(document).ready(function() {
     $('#section-container').append(section);
   });
 
+  // Add header/body worship section
+  $('#add-worship-section').click(function() {
+    var sectionTemplate = $('#section-template').html();
+    var section = $(sectionTemplate);
+
+    var header = section.find('.section-header');
+    header.attr('id', 'worship-section-header-' + numWorshipSections);
+    header.bind('keyup paste cut mouseup', parseAndRender);
+    var body = section.find('.section-body');
+    body.attr('id', 'worship-section-body-' + numWorshipSections);
+    body.bind('keyup paste cut mouseup', parseAndRender);
+
+    numWorshipSections++;
+
+    $('#worship-section-container').append(section);
+  });
+
   // Save to the database
   $('#save').click(function() {
     var data = {};
@@ -112,6 +147,17 @@ $(document).ready(function() {
         data.sections[i] = {};
         data.sections[i].section_title = $('#addl-section-header-' + i).val();
         data.sections[i].section_body = $('#addl-section-body-' + i).val();
+      }
+    }
+
+    // Get the worship sections
+    if (numWorshipSections > 0) {
+      data.worship = [];
+
+      for (var i = 0; i < numWorshipSections; i++) {
+        data.worship[i] = {};
+        data.worship[i].worship_title = $('#worship-section-header-' + i).val();
+        data.worship[i].worship_body = $('#worship-section-body-' + i).val();
       }
     }
 

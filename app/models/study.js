@@ -11,6 +11,10 @@ var schema = new mongoose.Schema({
   sections: [{
     section_title: String,
     section_body: String
+  }],
+  worship: [{
+    worship_title: String,
+    worship_body: String
   }]
 }, {collection: 'studies'});
 

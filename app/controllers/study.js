@@ -32,6 +32,16 @@ router.post('/study', function(req, res) {
     }
   }
 
+  if (req.body.worship && req.body.worship.length > 0) {
+    data.worship = [];
+
+    for (var i = 0; i < req.body.worship.length; i++) {
+      data.worship[i] = {};
+      data.worship[i].worship_title = req.body.worship[i].worship_title;
+      data.worship[i].worship_body = req.body.worship[i].worship_body;
+    }
+  }
+
   modelStudy.create(data, function(err, doc) {
     if (err) {
       console.log(err);
