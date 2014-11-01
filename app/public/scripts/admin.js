@@ -12,7 +12,13 @@ $(document).ready(function() {
 
   // Make study live
   var onClickMakeLive = function() {
-
+    $.ajax({
+      type: 'POST',
+      url: window.location.origin + '/study/' + this.id + '/make_live',
+      success: function(data, textStatus, jqXHR) {
+        window.location.href = window.location.origin + '/admin';
+      }
+    });
   };
 
   // Edit study
@@ -22,7 +28,6 @@ $(document).ready(function() {
 
   // Delete study
   var onClickDelete = function() {
-
     $.ajax({
       type: 'DELETE',
       url: window.location.origin + '/study/' + this.id,

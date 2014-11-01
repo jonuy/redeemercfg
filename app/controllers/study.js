@@ -58,7 +58,7 @@ router.post('/study', function(req, res) {
 });
 
 /**
- * DELETE /admin/study
+ * DELETE /study/:id
  *
  * Delete the specified study
  */
@@ -69,6 +69,7 @@ router.delete('/study/:id', function(req, res, next) {
     modelStudy.remove({_id: req.params.id}, function(err) {
       if (err) {
         console.log(err);
+        res.status(500).send();
       }
       else {
         res.status(204).send();
@@ -78,6 +79,50 @@ router.delete('/study/:id', function(req, res, next) {
   else {
     res.status(400).send();
   }
-})
+});
+
+/**
+ * POST /study/:id/make_live
+ *
+ * Make the specified study the current one displayed
+ */
+router.post('/study/:id/make_live', function(req, res, next) {
+  console.log('MAKE LIVE study: ' + req.params.id);
+
+  if (!req.params.id) {
+    res.status(400).send();
+    return;
+  }
+
+  var findCurrStudy = modelStudy.update(
+    {is_current_study: true},
+    {'$set': {is_current_study: false}},
+    {multi: true}
+  ).exec();
+
+  var updateCurr = findCurrStudy.then(
+    function() {
+      return modelStudy.update(
+        {_id: req.params.id},
+        {'$set': {is_current_study: true}}
+      ).exec();
+    },
+    function(err) {
+      console.log(err);
+      res.status(500).send();
+      return null;
+    }
+  );
+
+  updateCurr.then(
+    function() {
+      console.log('Successfully set study live: ' + req.params.id)
+      res.status(200).send();
+    },
+    function(err) {
+      res.status(500).send();
+    }
+  );
+});
 
 module.exports = router;

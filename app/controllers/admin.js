@@ -47,22 +47,4 @@ router.get('/admin/create', function(req, res) {
   res.render('admin_create', {title: 'redeemercfg - admin/create'});
 });
 
-/**
- * POST /admin/study
- *
- * Create new study document
- */
-router.post('/admin/study', function(req, res, next) {
-
-});
-
-/**
- * POST /admin/current_study
- *
- * Select current study document
- */
-router.post('/admin/current_study', function(req, res) {
-
-});
-
 module.exports = router;
