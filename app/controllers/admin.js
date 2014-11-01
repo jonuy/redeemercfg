@@ -4,6 +4,9 @@ var express = require('express')
 
 var router = express.Router();
 
+/**
+ * GET /admin
+ */
 router.get('/admin', function(req, res) {
   console.log('Rendering admin view');
 
@@ -27,7 +30,6 @@ router.get('/admin', function(req, res) {
 
     var data = {
       title: 'redeemercfg - admin',
-      currentStudy: currentStudy,
       studies: studies
     };
 
@@ -35,18 +37,30 @@ router.get('/admin', function(req, res) {
   });
 });
 
-// Show admin create screen
+/**
+ * GET /admin/create
+ *
+ * Show admin create screen
+ */
 router.get('/admin/create', function(req, res) {
   console.log('Rendering admin/create view');
   res.render('admin_create', {title: 'redeemercfg - admin/create'});
 });
 
-// Create new study document
+/**
+ * POST /admin/study
+ *
+ * Create new study document
+ */
 router.post('/admin/study', function(req, res, next) {
 
 });
 
-// Select current study document
+/**
+ * POST /admin/current_study
+ *
+ * Select current study document
+ */
 router.post('/admin/current_study', function(req, res) {
 
 });
