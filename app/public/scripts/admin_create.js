@@ -143,6 +143,10 @@ $(document).ready(function() {
   var saveToDatabase = function() {
     var data = {};
 
+    if (typeof editData === 'object') {
+      data.id = editData._id;
+    }
+
     // Get the required fields
     data.name = $('#study-name').val();
     data.title = $('#study-title').val();
@@ -193,24 +197,24 @@ $(document).ready(function() {
   $('#save').click(saveToDatabase);
 
   // Populate with values if we have any
-  if (typeof study === 'object') {
-    $('#study-name').val(study.name);
-    $('#study-title').val(study.title);
-    $('#study-subtitle').val(study.subtitle);
-    $('#scripture-verse').val(study.scripture_verse);
-    $('#scripture-body').val(study.scripture_body);
-    if (study.sections) {
-      for (var i = 0; i < study.sections.length; i++) {
+  if (typeof editData === 'object') {
+    $('#study-name').val(editData.name);
+    $('#study-title').val(editData.title);
+    $('#study-subtitle').val(editData.subtitle);
+    $('#scripture-verse').val(editData.scripture_verse);
+    $('#scripture-body').val(editData.scripture_body);
+    if (typeof editData.sections !== 'undefined') {
+      for (var i = 0; i < editData.sections.length; i++) {
         addStudySection();
-        $('#addl-section-header-' + i).val(study.sections[i].section_title);
-        $('#addl-section-body-' + i).val(study.sections[i].section_body);
+        $('#addl-section-header-' + i).val(editData.sections[i].section_title);
+        $('#addl-section-body-' + i).val(editData.sections[i].section_body);
       }
     }
-    if (study.worship) {
-      for (var i = 0; i < study.worship.length; i++) {
+    if (typeof editData.worship !== 'undefined') {
+      for (var i = 0; i < editData.worship.length; i++) {
         addWorshipSection();
-        $('#worship-section-header-' + i).val(study.worship[i].worship_title);
-        $('#worship-section-body-' + i).val(study.worship[i].worship_body);
+        $('#worship-section-header-' + i).val(editData.worship[i].worship_title);
+        $('#worship-section-body-' + i).val(editData.worship[i].worship_body);
       }
     }
   }

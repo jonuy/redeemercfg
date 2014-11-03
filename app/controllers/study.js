@@ -13,9 +13,6 @@ router.post('/study', function(req, res) {
     res.status(400).send('Missing required parameter(s)');
     return;
   }
-  
-
-  console.log('Creating a new study in database.');
 
   var data = {
     name: req.body.name,
@@ -45,16 +42,39 @@ router.post('/study', function(req, res) {
     }
   }
 
-  modelStudy.create(data, function(err, doc) {
-    if (err) {
-      console.log(err);
-    }
+  if (req.body.id) {
+    console.log('Updating study in database: ' + req.body.id);
+    modelStudy.update(
+      {_id: req.body.id},
+      data,
+      function(err, num, raw) {
+        if (err) {
+          console.log(err);
+          res.status(500).send();
+        }
 
-    if (doc) {
-      console.log('Doc created:', doc);
-      res.status(201).send();
-    }
-  });
+        if (num) {
+          console.log('Doc updated!');
+          res.status(200).send();
+        }
+      }
+    );
+  }
+  else {
+    console.log('Creating a new study in database.');
+
+    modelStudy.create(data, function(err, doc) {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+      }
+
+      if (doc) {
+        console.log('Doc created:', doc);
+        res.status(201).send();
+      }
+    });
+  }
 });
 
 /**
