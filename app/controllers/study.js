@@ -20,7 +20,7 @@ router.post('/study', function(req, res) {
   var data = {
     name: req.body.name,
     title: req.body.title,
-    subtitle: req.body.subitle,
+    subtitle: req.body.subtitle,
     scripture_verse: req.body.scripture_verse,
     scripture_body: req.body.scripture_body
   };
