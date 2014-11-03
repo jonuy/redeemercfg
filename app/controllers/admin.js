@@ -13,6 +13,7 @@ router.get('/admin', function(req, res) {
   var currentStudy;
   var studies = [];
   // Get list of all studies
+  // @todo Sort by Date
   modelStudy.find({}, function(err, docs) {
     if (err) {
       console.log(err);
@@ -21,11 +22,17 @@ router.get('/admin', function(req, res) {
     }
 
     for (var i = 0; docs && i < docs.length; i++) {
-      if (docs[i].is_current_study) {
-        currentStudy = docs[i];
+      studies[i] = docs[i];
+
+      // More readable date string
+      if (typeof studies[i].date === 'object') {
+        var date = studies[i].date;
+        var m  = date.getMonth() + 1;
+        var d = date.getDate();
+        var y = date.getFullYear();
+        studies[i].dateString = m + '/' + d + '/' + y;
       }
-      
-      studies[studies.length] = docs[i];
+
     }
 
     var data = {
@@ -64,8 +71,7 @@ router.get('/admin/edit/:id', function(req, res) {
         console.log(err);
       }
       else {
-        console.log(doc);
-
+        console.log('Rendering admin/edit view');
         res.render('admin_create',
           {
             title: 'redeemercfg - admin/edit',

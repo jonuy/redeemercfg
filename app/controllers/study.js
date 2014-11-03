@@ -16,6 +16,7 @@ router.post('/study', function(req, res) {
 
   var data = {
     name: req.body.name,
+    date: new Date(req.body.date),
     title: req.body.title,
     subtitle: req.body.subtitle,
     scripture_verse: req.body.scripture_verse,

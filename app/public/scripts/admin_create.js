@@ -149,6 +149,7 @@ $(document).ready(function() {
 
     // Get the required fields
     data.name = $('#study-name').val();
+    data.date = $('#study-date').val();
     data.title = $('#study-title').val();
     data.subtitle = $('#study-subtitle').val();
     data.scripture_verse = $('#scripture-verse').val();
@@ -199,6 +200,12 @@ $(document).ready(function() {
   // Populate with values if we have any
   if (typeof editData === 'object') {
     $('#study-name').val(editData.name);
+    if (typeof editData.date === 'object') {
+      $('#study-date').val(editData.date.toLocaleDateString());
+    }
+    else if (typeof editData.date === 'string') {
+      $('#study-date').val(new Date(editData.date).toLocaleDateString());
+    }
     $('#study-title').val(editData.title);
     $('#study-subtitle').val(editData.subtitle);
     $('#scripture-verse').val(editData.scripture_verse);
