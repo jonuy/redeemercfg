@@ -3,10 +3,12 @@ block styles
   link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel="stylesheet", type="text/css")
 
 block scripts
+  script(type="text/javascript")
+    | var study = !{JSON.stringify(study)};
   script(src="//code.jquery.com/jquery-1.11.0.min.js")
   script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
-  script(src="../scripts/lib/stmd/commonmark.js")
-  script(src="../scripts/admin_create.js")
+  script(src="#{scripts_dir}scripts/lib/stmd/commonmark.js")
+  script(src="#{scripts_dir}scripts/admin_create.js")
 
 block page-header
   .container
@@ -19,15 +21,19 @@ block page-content
       .form-group
         label Name (for internal use only):
         input#study-name.form-control
+
       .form-group
         label Title (required):
         input#study-title.form-control
+
       .form-group
         label Subtitle (required):
         input#study-subtitle.form-control
+
       .form-group
         label Scripture Verse (required):
         input#scripture-verse.form-control
+
       .form-group
         label Scripture (required):
         textarea#scripture-body.form-control

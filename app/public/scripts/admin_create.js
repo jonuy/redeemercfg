@@ -1,8 +1,11 @@
 var numAddlSections = 0;
 var numWorshipSections = 0;
 
-// Setup commonmark parsing
+/**
+ * Stuff to happen when document is loaded
+ */
 $(document).ready(function() {
+  // Setup commonmark parsing
   var writer = new commonmark.HtmlRenderer();
   var reader = new commonmark.DocParser();
 
@@ -38,23 +41,23 @@ $(document).ready(function() {
     var text = '';
 
     var title = $('#study-title').val();
-    if (title.length > 0) {
+    if (title && title.length > 0) {
       text += '# ' + title + '\n\n';
     }
 
     var subtitle = $('#study-subtitle').val();
-    if (subtitle.length > 0) {
+    if (subtitle && subtitle.length > 0) {
       text += '## ' + subtitle + '\n\n';
     }
 
     var scripture_verse = $('#scripture-verse').val();
-    if (scripture_verse.length > 0) {
+    if (scripture_verse && scripture_verse.length > 0) {
       text += '### SCRIPTURE\n\n';
       text += scripture_verse + '\n\n';
     }
 
     var scripture_body = $('#scripture-body').val();
-    if (scripture_body.length > 0) {
+    if (scripture_body && scripture_body.length > 0) {
       text += scripture_body + '\n\n';
     }
 
@@ -62,12 +65,12 @@ $(document).ready(function() {
     if (numAddlSections > 0) {
       for (var i = 0; i < numAddlSections; i++) {
         var section_title = $('#addl-section-header-' + i).val();
-        if (section_title.length > 0) {
+        if (section_title && section_title.length > 0) {
           text += '### ' + section_title + '\n\n';
         }
 
         var section_body = $('#addl-section-body-' + i).val();
-        if (section_body.length > 0) {
+        if (section_body && section_body.length > 0) {
           text += section_body + '\n\n';
         }
       }
@@ -79,12 +82,12 @@ $(document).ready(function() {
 
       for (var i = 0; i < numWorshipSections; i++) {
         var section_title = $('#worship-section-header-' + i).val();
-        if (section_title.length > 0) {
+        if (section_title && section_title.length > 0) {
           text += '### ' + section_title + '\n\n';
         }
 
         var section_body = $('#worship-section-body-' + i).val();
-        if (section_body.length > 0) {
+        if (section_body && section_body.length > 0) {
           text += section_body + '\n\n';
         }
       }
@@ -94,8 +97,10 @@ $(document).ready(function() {
   };
 
 
-  // Add header/body section
-  $('#add-section').click(function() {
+  /**
+   * Add a study section
+   */
+  var addStudySection = function() {
     var sectionTemplate = $('#section-template').html(); 
     var section = $(sectionTemplate);
 
@@ -109,10 +114,13 @@ $(document).ready(function() {
     numAddlSections++;
 
     $('#section-container').append(section);
-  });
+  };
+  $('#add-section').click(addStudySection);
 
-  // Add header/body worship section
-  $('#add-worship-section').click(function() {
+  /**
+   * Add a worship section
+   */
+  var addWorshipSection = function() {
     var sectionTemplate = $('#section-template').html();
     var section = $(sectionTemplate);
 
@@ -126,10 +134,13 @@ $(document).ready(function() {
     numWorshipSections++;
 
     $('#worship-section-container').append(section);
-  });
+  };
+  $('#add-worship-section').click(addWorshipSection);
 
-  // Save to the database
-  $('#save').click(function() {
+  /**
+   * Save content to database
+   */
+  var saveToDatabase = function() {
     var data = {};
 
     // Get the required fields
@@ -139,7 +150,7 @@ $(document).ready(function() {
     data.scripture_verse = $('#scripture-verse').val();
 
     var scripture_body = $('#scripture-body').val();
-    data.scripture_body = writer.renderBlock(reader.parse(scripture_body));
+    data.scripture_body = scripture_body;
 
     // Get the additional sections
     if (numAddlSections > 0) {
@@ -149,7 +160,7 @@ $(document).ready(function() {
         data.sections[i] = {};
         data.sections[i].section_title = $('#addl-section-header-' + i).val();
         var body = $('#addl-section-body-' + i).val();
-        data.sections[i].section_body = writer.renderBlock(reader.parse(body));
+        data.sections[i].section_body = body;
       }
     }
 
@@ -161,7 +172,7 @@ $(document).ready(function() {
         data.worship[i] = {};
         data.worship[i].worship_title = $('#worship-section-header-' + i).val();
         var body = $('#worship-section-body-' + i).val();
-        data.worship[i].worship_body = writer.renderBlock(reader.parse(body));
+        data.worship[i].worship_body = body;
       }
     }
 
@@ -178,6 +189,30 @@ $(document).ready(function() {
         window.location.href = window.location.origin + '/admin';
       }
     });
-  });
+  }
+  $('#save').click(saveToDatabase);
+
+  // Populate with values if we have any
+  if (typeof study === 'object') {
+    $('#study-name').val(study.name);
+    $('#study-title').val(study.title);
+    $('#study-subtitle').val(study.subtitle);
+    $('#scripture-verse').val(study.scripture_verse);
+    $('#scripture-body').val(study.scripture_body);
+    if (study.sections) {
+      for (var i = 0; i < study.sections.length; i++) {
+        addStudySection();
+        $('#addl-section-header-' + i).val(study.sections[i].section_title);
+        $('#addl-section-body-' + i).val(study.sections[i].section_body);
+      }
+    }
+    if (study.worship) {
+      for (var i = 0; i < study.worship.length; i++) {
+        addWorshipSection();
+        $('#worship-section-header-' + i).val(study.worship[i].worship_title);
+        $('#worship-section-body-' + i).val(study.worship[i].worship_body);
+      }
+    }
+  }
 
 });

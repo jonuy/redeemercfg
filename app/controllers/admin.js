@@ -44,7 +44,37 @@ router.get('/admin', function(req, res) {
  */
 router.get('/admin/create', function(req, res) {
   console.log('Rendering admin/create view');
-  res.render('admin_create', {title: 'redeemercfg - admin/create'});
+  res.render('admin_create',
+    {
+      title: 'redeemercfg - admin/create',
+      scripts_dir: '../'
+    });
+});
+
+/**
+ * GET /admin/edit/:id
+ *
+ * Admin edit screen
+ */
+router.get('/admin/edit/:id', function(req, res) {
+  modelStudy.findOne(
+    {_id: req.params.id},
+    function(err, doc) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log(doc);
+
+        res.render('admin_create',
+          {
+            title: 'redeemercfg - admin/edit',
+            scripts_dir: '../../',
+            study: doc
+          });
+      }
+    }
+  );
 });
 
 module.exports = router;

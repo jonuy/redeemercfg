@@ -23,7 +23,7 @@ $(document).ready(function() {
 
   // Edit study
   var onClickEdit = function() {
-
+    window.location.href = window.location.origin + '/admin/edit/' + this.id;
   };
 
   // Delete study
