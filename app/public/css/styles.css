@@ -77,6 +77,14 @@ p {
   margin: 1em 0;
 }
 
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
 .arrow-left {
   display: inline;
   height: 24px;
@@ -124,9 +132,4 @@ p {
 .swipe-control-text {
   position: relative;
   top: 2px;
-}
-
-.super {
-  vertical-align: super;
-  font-size: .75em;
 }
