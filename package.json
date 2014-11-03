@@ -1,0 +1,15 @@
+{
+  "name": "redeemercfg",
+  "version": "0.0.1",
+  "description": "An application for configuring and viewing weekly Redeemer CFG studies.",
+  "dependencies": {
+    "body-parser": "^1.9.x",
+    "connect-flash": "^0.1.1",
+    "express": "^4.8.0",
+    "jade": "^1.7.0",
+    "mongoose": "^3.8.0",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.4.9"
+  }
+}

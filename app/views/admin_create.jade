@@ -1,0 +1,69 @@
+extend layout
+block styles
+  link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel="stylesheet", type="text/css")
+
+block scripts
+  script(type="text/javascript")
+    - if (study) {
+    | var editData = !{JSON.stringify(study)};
+    - }
+  script(src="//code.jquery.com/jquery-1.11.0.min.js")
+  script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+  script(src="#{scripts_dir}scripts/lib/stmd/commonmark.js")
+  script(src="#{scripts_dir}scripts/admin_create.js")
+
+block page-header
+  .container
+    h2 Admin - Create a Study
+
+block page-content
+  div.col-md-6
+    h3 Study
+    form.form
+      .form-group
+        label Name (for internal use only):
+        input#study-name.form-control
+
+      .form-group
+        label Title (required):
+        input#study-title.form-control
+
+      .form-group
+        label Subtitle (required):
+        input#study-subtitle.form-control
+
+      .form-group
+        label Scripture Verse (required):
+        input#scripture-verse.form-control
+
+      .form-group
+        label Scripture (required):
+        textarea#scripture-body.form-control
+
+      #section-container
+
+    p
+      button#add-section.btn.btn-default Add Section
+
+    hr
+    h3 Worship
+
+    #worship-section-container
+
+    p
+      button#add-worship-section.btn.btn-default Add Worship Section
+
+  div.col-md-6
+    h3 Preview
+    #preview
+
+    p
+      button#save.btn.btn-primary SAVE
+
+  #section-template(style="display:none")
+    .form-group
+      label Section Header:
+      input.section-header.form-control
+    .form-group
+      label Section Body:
+      textarea.section-body.form-control

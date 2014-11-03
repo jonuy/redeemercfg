@@ -1,0 +1,86 @@
+<div id="slider"><ul>
+  <!-- Worship Page -->
+  <li style="display:none">
+    <div id="goStudy" class="swipe-control">STUDY >></div>
+    <h2>WORSHIP</h2>
+    <hr>
+    <% if (typeof(worship) !== 'undefined') { %>
+    <% worship.forEach(function(section) { %>
+      
+      <h3><%= section.header %></h3>
+      <div class="section-body">
+        <%= section.body %>
+      </div>
+      <hr>
+
+    <% }); %>
+    <% } %>
+    <div id="goStudy" class="swipe-control">STUDY >></div>
+  </li>
+
+  <!-- Study Page -->
+  <li style="display:block">
+    <div id="goWorship" class="swipe-control"><< WORSHIP</div>
+
+    <h1><%= title_1 %></h1>
+    <h2><%= title_2 %></h2>
+    <hr>
+
+    <% if (typeof(series_intro) !== 'undefined') { %>
+      <h3>SERIES INTRODUCTION</h3>
+      <div class="section-body">
+        <%= series_intro %>
+      </div>
+    <% } %>
+
+    <h3>SCRIPTURE</h3>
+    <div class="section-title">
+      <%= scripture_verse %>
+    </div>
+    <div>
+      <%= scripture_body %>
+    </div>
+    <hr>
+
+    <h3>DISCUSSION</h3>
+    <h4>GOAL OF THIS STUDY</h4>
+    <div class="section-body">
+      <%= goal %>
+    </div>
+
+    <h4>BACKGROUND INFO</h4>
+    <div class="section-body">
+      <%= background %>
+    </div>
+    <hr>
+
+    <div class="question">
+      <%= question1 %>
+    </div>
+
+    <div class="question">
+      <%= question2 %>
+    </div>
+
+    <div class="question">
+      <%= question3 %>
+    </div>
+
+    <% if (typeof(question4) !== 'undefined') { %>
+    <div class="question">
+      <%= question4 %>
+    </div>
+    <hr>
+    <% } %>
+
+    <% if (typeof(prayer) !== 'undefined') { %>
+    <h3>PRAYER</h3>
+    <ul>
+      <% prayer.forEach(function(section) { %>
+        <li class="question"> - <%= section %></li>
+      <% }); %>
+    </ul>
+    <% } %>
+
+  </li>
+</ul></div>

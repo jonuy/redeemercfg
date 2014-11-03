@@ -1,0 +1,41 @@
+extend layout
+block styles
+  link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel="stylesheet", type="text/css")
+  link(href="css/admin_styles.css", rel="stylesheet", type="text/css")
+
+block scripts
+  script(src="//code.jquery.com/jquery-1.11.0.min.js")
+  script(src="scripts/admin.js")
+
+block page-header
+  .container
+    h2 Admin
+
+block page-content
+  div.col-md-6
+    h4 All Studies:
+    - for (var i = 0; studies && i < studies.length; i++) {
+      - if (studies[i].is_current_study) {
+        div(class="study-row study-row-selected study-row-#{i}")
+          | #{studies[i].name}
+          .study-row-controls.hidden
+            button(id="btn-make-live-#{i}", class="btn btn-xs btn-primary disabled", val='#{studies[i]._id}')
+              | Make Live
+            button(id="btn-edit-#{i}", class="btn btn-xs btn-default", val='#{studies[i]._id}')
+              | Edit
+            button(id="btn-delete-#{i}", class="btn btn-xs btn-danger", val='#{studies[i]._id}')
+              | Delete
+      - } else {
+        div(class="study-row study-row-#{i}")
+          | #{studies[i].name}
+          .study-row-controls.hidden
+            button(id="btn-make-live-#{i}", class="btn btn-xs btn-primary", val='#{studies[i]._id}')
+              | Make Live
+            button(id="btn-edit-#{i}", class="btn btn-xs btn-default", val='#{studies[i]._id}')
+              | Edit
+            button(id="btn-delete-#{i}", class="btn btn-xs btn-danger", val='#{studies[i]._id}')
+              | Delete
+      - }
+    - }
+
+    button#create-new.btn.btn-primary Create New
