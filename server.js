@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'app/public')));
 
 // Mongoose connect
-mongoose.connect(process.env.DB_URI || 'mongodb://localhost/redeemercfg');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/redeemercfg');
 
 // Setting up controllers
 var admin = require('./app/controllers/admin');
