@@ -68,6 +68,10 @@ div.section-body ul li {
   list-style: circle inside;
 }
 
+ol,ul {
+  margin-left: 2em;
+}
+
 li {
   margin-left: 10px;
   padding-bottom: 10px;
