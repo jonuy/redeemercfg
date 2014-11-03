@@ -13,8 +13,7 @@ router.get('/admin', function(req, res) {
   var currentStudy;
   var studies = [];
   // Get list of all studies
-  // @todo Sort by Date
-  modelStudy.find({}, function(err, docs) {
+  modelStudy.find({}, null, {sort: {date: -1}}, function(err, docs) {
     if (err) {
       console.log(err);
       res.send(500);
