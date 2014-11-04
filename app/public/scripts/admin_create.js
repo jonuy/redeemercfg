@@ -201,10 +201,17 @@ $(document).ready(function() {
   if (typeof editData === 'object') {
     $('#study-name').val(editData.name);
     if (typeof editData.date === 'object') {
-      $('#study-date').val(editData.date.toLocaleDateString());
+      var m = editData.date.getMonth() + 1;
+      var d = editData.date.getDate();
+      var y = editData.date.getFullYear();
+      $('#study-date').val(m + '/' + d + '/' + y);
     }
     else if (typeof editData.date === 'string') {
-      $('#study-date').val(new Date(editData.date).toLocaleDateString());
+      var date = new Date(editData.date);
+      var m = date.getMonth() + 1;
+      var d = date.getDate();
+      var y = date.getFullYear();
+      $('#study-date').val(m + '/' + d + '/' + y);
     }
     $('#study-title').val(editData.title);
     $('#study-subtitle').val(editData.subtitle);
